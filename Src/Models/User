@@ -1,0 +1,28 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+
+public class User
+{
+    [Key]
+    public int Rut { get; set; }
+
+    [StringLength(100, MinimumLength = 3)]
+    public required string Name { get; set; }
+
+    [EmailAddress]
+    public string Email { get; set; }
+
+    [RegularExpression(@"^(masculino|femenino|otro|prefiero no decirlo)$", ErrorMessage = "El género no es válido.")]
+    public string Genero { get; set; }
+
+    public DateTime FechaNacimiento { get; set; }
+
+    public static ValidationResult ValidarFechaNacimiento(DateTime fechaNacimiento, ValidationContext context)
+    {
+        if (fechaNacimiento >= DateTime.Now)
+        {
+            return new ValidationResult("La fecha de nacimiento debe ser menor a la fecha actual.");
+        }
+        return ValidationResult.Success;
+    }
+}

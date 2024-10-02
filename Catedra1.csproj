@@ -14,4 +14,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+  <Compile Include="Src\Data\DataContext.cs" />
+  <Compile Include="Models\User.cs" />
+</ItemGroup>
+
 </Project>
